@@ -5,9 +5,10 @@ import Project from "../../models/Project";
 const router = express.Router();
 
 router.post("/", (req, res, next) => {
-  const { body } = req;
+  console.log(req.body);
+  const { project } = req.body;
 
-  if (!body.title) {
+  if (!project.title) {
     return res.status(422).json({
       errors: {
         title: "is required"
@@ -15,18 +16,10 @@ router.post("/", (req, res, next) => {
     });
   }
 
-  if (!body.description) {
-    return res.status(422).json({
-      errors: {
-        description: "is required"
-      }
-    });
-  }
-
-  const newProject = new Project(body);
+  const newProject = new Project(project);
   return newProject
     .save()
-    .then(() => res.json({ projects: newProject.toJSON() }))
+    .then(() => res.json({ project: newProject.toJSON() }))
     .catch(next);
 });
 
@@ -40,21 +33,24 @@ router.get("/", (req, res, next) => {
 });
 
 router.patch("/:id", (req, res, next) => {
-  const {
-    body: { id, title, description, filePath, status }
-  } = req;
+  const { project } = req.body;
+  const { id } = req.params;
 
-  const editProject = new Project(req.body);
-  return Project.findByIdAndUpdate(
-    { _id: id },
-    { title, description, filePath, status }
-  )
-    .then(() => res.json({ project: editProject.toJSON() }))
+  if (!project.title) {
+    return res.status(422).json({
+      errors: {
+        title: "is required"
+      }
+    });
+  }
+
+  return Project.findByIdAndUpdate({ _id: id }, { ...project })
+    .then(() => res.json({ id, project }))
     .catch(next);
 });
 
 router.delete("/:id", (req, res, next) => {
-  return Project.findByIdAndRemove(req.project._id)
+  return Project.findByIdAndRemove(req.params.id)
     .then(() => res.sendStatus(200))
     .catch(next);
 });
