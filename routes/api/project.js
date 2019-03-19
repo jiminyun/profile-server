@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
 import express from "express";
 import Project from "../../models/Project";
-
 const router = express.Router();
 
 router.post("/", (req, res, next) => {
-  console.log(req.body);
   const { project } = req.body;
 
   if (!project.title) {
@@ -44,8 +42,8 @@ router.patch("/:id", (req, res, next) => {
     });
   }
 
-  return Project.findByIdAndUpdate({ _id: id }, { ...project })
-    .then(() => res.json({ id, project }))
+  return Project.findByIdAndUpdate({ _id: id }, { ...project }, { new: true })
+    .then(data => res.json({ id, project: data }))
     .catch(next);
 });
 
