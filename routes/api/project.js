@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import express from "express";
 import Project from "../../models/Project";
 const router = express.Router();

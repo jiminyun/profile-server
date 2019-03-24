@@ -6,14 +6,16 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import bodyParser from "body-parser";
+import passport from "passport";
 import cors from "cors";
-import mongoose from "mongoose";
+import "./passport";
 //import MongoStore from "connect-mongo";
 //routes
 import routes from "./routes";
-import errorhandler from "errorhandler";
 
+import errorhandler from "errorhandler";
 const isProduction = process.env.NODE_ENV === "production";
+
 const app = express();
 
 app.use(cors());
@@ -22,6 +24,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(morgan("dev"));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
