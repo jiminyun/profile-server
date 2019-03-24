@@ -1,7 +1,22 @@
-import passport from "passport";
+const JWTStrategy = require("passport-jwt").Strategy;
+const ExtractJWT = require("passport-jwt").ExtractJwt;
 import User from "./models/User";
+const opts = {};
 
-passport.use(User.createStrategy());
+opts.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+opts.secretOrKey = "secret";
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+module.exports = passport => {
+  passport.use(
+    new JWTStrategy(opts, (jwt_payload, done) => {
+      User.findById(jwt_payload.id)
+        .then(user => {
+          if (user) {
+            return done(null, user);
+          }
+          return done(null, false);
+        })
+        .catch(err => console.error(err));
+    })
+  );
+};

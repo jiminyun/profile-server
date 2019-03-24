@@ -50,9 +50,10 @@ router.post("/register", (req, res, next) => {
 // });
 
 router.post("/login", function(req, res, next) {
-  passport.authenticate("local", function(err, user, info) {
+  console.log(req.body);
+  passport.authenticate("local", function(req, err, user, info) {
     if (err) {
-      console.log(0);
+      console.log("error", error);
       return next(err);
     }
     if (!user) {
@@ -60,7 +61,7 @@ router.post("/login", function(req, res, next) {
       return res.redirect("/login");
     }
     if (info) {
-      console.log(info);
+      console.log("info", info);
     }
     req.logIn(user, function(err) {
       if (err) {
