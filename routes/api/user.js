@@ -1,5 +1,7 @@
 import express from "express";
 import passport from "passport";
+import jwt from "jsonwebtoken";
+
 import User from "../../models/User";
 import validateRegisterInput from "../../validation/register";
 import validateLoginInput from "../../validation/login";
@@ -38,36 +40,42 @@ router.post("/register", (req, res, next) => {
   }
 });
 
-// router.post("/login", passport.authenticate("local", ), (req, res) => {
-//   //console.log("res", res);
-//   const { errors, isValid } = validateLoginInput(req.body);
-
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
-
-//   return res.status(200).json(req.user.username);
-// });
-
 router.post("/login", function(req, res, next) {
-  console.log(req.body);
-  passport.authenticate("local", function(req, err, user, info) {
-    if (err) {
-      console.log("error", error);
-      return next(err);
-    }
+  const { errors, isValid } = validateLoginInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
+  passport.authenticate("local", function(err, user, info) {
     if (!user) {
-      console.log(1);
-      return res.redirect("/login");
-    }
-    if (info) {
-      console.log("info", info);
+      errors.email = "User not found";
+      return res.status(404).json(errors);
     }
     req.logIn(user, function(err) {
       if (err) {
         return next(err);
       }
-      return res.redirect("/users/" + user.username);
+      const payload = {
+        id: user._id,
+        name: user.name
+      };
+      jwt.sign(
+        payload,
+        "secret",
+        {
+          expiresIn: 3600
+        },
+        (err, token) => {
+          if (err) console.error("there is some error in token", err);
+          else {
+            res.json({
+              success: true,
+              token: `Bearer ${token}`
+            });
+          }
+        }
+      );
     });
   })(req, res, next);
 });
