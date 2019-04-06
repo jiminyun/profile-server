@@ -26,7 +26,9 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, "public")));
+//app.use(express.static(path.join(__dirname, "public")));
+//Serve static files from the React app
+app.use(express.static(path.join(__dirname, "profile-client/build")));
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,

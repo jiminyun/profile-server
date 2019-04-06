@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev:server": "nodemon --exec babel-node init.js",
-    "start": "babel-node init.js"
+    "start": "babel-node init.js",
+    "heroku-postbuild": "cd profile-client && yarn && yarn run build"
   },
   "author": "jimin yun",
   "license": "ISC",
