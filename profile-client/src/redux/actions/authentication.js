@@ -4,8 +4,8 @@ import { GET_ERRORS, SET_CURRENT_USER } from "./type";
 import setAuthToken from "../setAuthToken";
 import jwt_decode from "jwt-decode";
 
-const API_URL = "http://localhost:4000/api/users";
-
+//const API_URL = "http://localhost:4000/api/users";
+const API_URL = "/api/users";
 // api call
 const registerUser = (user, history) => dispatch => {
   axios

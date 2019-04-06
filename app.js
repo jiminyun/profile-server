@@ -39,5 +39,8 @@ app.use(
 );
 
 app.use(routes);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/profile-client/build/index.html"));
+});
 
 export default app;

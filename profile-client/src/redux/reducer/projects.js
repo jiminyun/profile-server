@@ -2,7 +2,8 @@
 
 import axios from "axios";
 
-const API_URL = "http://localhost:4000/api/projects";
+//const API_URL = "http://localhost:4000/api/projects";
+const API_URL = "/api/projects";
 // actions
 const ADD_PROJECT = "ADD_PROJECT";
 const EDIT_PROJECT = "EDIT_PROJECT";
