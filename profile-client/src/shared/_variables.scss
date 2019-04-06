@@ -1,0 +1,30 @@
+//color
+$bg-color: #ededed;
+$page-background-color: white;
+$theme-red: #ff441b;
+
+//size
+$max-page-width: 1240px;
+$min-page-height: 600px;
+$normal-font-size: 20 px;
+
+//button
+@mixin Button($color) {
+  -webkit-appearance: none;
+  border-radius: 3px;
+  background-color: $color;
+  color: white;
+  font-weight: 600;
+  border: 0;
+  line-height: 26px;
+  cursor: pointer;
+  width: 100%;
+  padding: 2px 9px;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:active {
+    opacity: 0.7;
+  }
+}

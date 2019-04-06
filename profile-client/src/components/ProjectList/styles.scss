@@ -1,0 +1,18 @@
+@import "../../shared/variables.scss";
+.projects-container {
+  .warpper {
+    display: grid;
+    grid-template-columns: auto auto;
+    .item {
+      font-size: 20px;
+      border-bottom: 1px solid lightgrey;
+      padding: 10px;
+      .btn-del {
+        @include Button(lightgrey);
+      }
+      .btn-edit {
+        @include Button(#ff441b);
+      }
+    }
+  }
+}

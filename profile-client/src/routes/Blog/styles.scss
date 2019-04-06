@@ -1,0 +1,111 @@
+@import "../../shared/_variables";
+
+.home-container {
+  min-height: $min-page-height;
+  max-width: $max-page-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: $page-background-color;
+  display: flex;
+
+  //left main contents
+  .column_left {
+    width: 70%;
+    margin-right: 20px;
+    padding: 5px;
+    .experiences,
+    .education {
+      li {
+        display: flex;
+        flex-direction: row;
+
+        .year {
+          font-weight: bold;
+          line-height: 1.5em;
+          margin-right: 30px;
+          z-index: 999;
+        }
+        .year:after {
+          width: 5px;
+          height: 60%;
+          position: relative;
+          left: 15px;
+          top: 0;
+          content: " ";
+          display: block;
+          background: #ec7263;
+          background-image: linear-gradient(to bottom, #ec7263, white);
+          padding-top: 10px;
+        }
+        .description {
+          width: 100%;
+          display: inline-block;
+          background: #eee;
+          margin-bottom: 10px;
+          position: relative;
+          padding: 10px 0px 10px 10px;
+          border-bottom: 1px solid #ddd;
+        }
+        .description:after {
+          content: "";
+          position: absolute;
+          top: 15px;
+          right: 0;
+          left: -16px;
+          height: 0;
+          width: 0;
+          border: solid transparent;
+          border-right-color: red;
+          border-width: 8px;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  //right sidebar
+  .column_right {
+    width: 30%;
+    margin-left: 10px;
+    padding-right: 0;
+
+    .skill {
+      color: #fff;
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      padding: 5px 5px 5px 25px;
+      background: #f0563d;
+      position: relative;
+      font-size: 0.8em;
+    }
+    .skill:before {
+      content: "\f004";
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      position: absolute;
+      top: 6px;
+      left: 7px;
+    }
+  }
+
+  p {
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+
+  h2 {
+    color: #ec7263;
+    font-size: 1.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 15px 0;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+    padding: 0;
+    font-weight: 700;
+  }
+}

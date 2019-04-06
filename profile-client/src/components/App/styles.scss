@@ -1,0 +1,31 @@
+@import "~reset-css/reset.css";
+@import "../../shared/_variables";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
+@import url("https://use.fontawesome.com/releases/v5.7.2/css/all.css");
+
+body {
+  background-color: $bg-color;
+  background-image: url("../../images/noisy_grid.png");
+
+  //font-family: -apple-system, BlinkMacSystemFont, "Open San", Tahoma, Helvetica,
+  //  Arial, sans-serif;
+  font-family: "Open Sans", Arial, Tahoma;
+  color: #363636;
+  margin-bottom: 15px;
+}
+
+* {
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+}
+
+a {
+  color: darkgray;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f8bf45;
+}
