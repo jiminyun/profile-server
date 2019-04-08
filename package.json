@@ -5,11 +5,14 @@
   "main": "app.js",
   "scripts": {
     "dev:server": "nodemon --exec babel-node init.js",
-    "start": "babel-node init.js"
+    "build:server": "babel src --out-dir build",
+    "build": "npm run build:server",
+    "start": "npm run build && PRODUCTION=ture node build/init.js"
   },
   "author": "jimin yun",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.4.3",
     "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.4",
