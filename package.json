@@ -7,7 +7,7 @@
     "dev:server": "nodemon --exec babel-node init.js",
     "build:server": "babel src --out-dir build",
     "build": "npm run build:server",
-    "start": "npm run build && PRODUCTION=ture node build/init.js"
+    "start": "npm run build && PRODUCTION=ture forever start build/init.js"
   },
   "author": "jimin yun",
   "license": "ISC",
@@ -25,6 +25,7 @@
     "errorhandler": "^1.5.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "forever": "^1.0.0",
     "helmet": "^3.16.0",
     "mongoose": "^5.4.19",
     "morgan": "^1.9.1",
