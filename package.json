@@ -4,7 +4,7 @@
   "description": "profile + resume + portfolio",
   "main": "app.js",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js",
+    "dev:server": "nodemon --exec babel-node src/init.js",
     "build:server": "babel src --out-dir build",
     "build": "npm run build:server",
     "start": "npm run build && PRODUCTION=ture forever start build/init.js"
